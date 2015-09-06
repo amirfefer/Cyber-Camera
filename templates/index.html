@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyber Camera</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ <script type="text/javascript" src="{{ url_for('static', filename='application.js') }}"></script>
+<style type="text/css">
+	.bs-example{
+		margin: 20px;
+	}
+</style>
+</head>
+<body>
+<div class="bs-example">
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active "><a href="#sectionA">Stream <i class="glyphicon glyphicon-facetime-video"></i></a></li>
+        <li><a href="#sectionB">Active <i class="glyphicon glyphicon-check"></i></a></li>
+        <li><a href="#settings">Settings <i class="glyphicon glyphicon-cog"></i></a></li>
+    </ul>
+    <div class="tab-content">
+        <div align="center" id="sectionA" class="tab-pane fade in active">
+
+                 <h3>Stream</h3>
+                <br>
+              <div class="btn-group btn-group-md">
+                 <button type="button" id="btn-small" class="btn btn-primary">Small</button>
+                 <button type="button" id="btn-med" class="btn btn-primary">Medium</button>
+                  <button type="button" id="btn-lg" class="btn btn-primary">Large</button>
+              </div>
+                <br><br>
+
+        <div id="stream" style="text-align: center;"><IMG id="bg"  SRC="/video_feed" width="320" height="240" >
+            <br>
+          <div class="btn-group btn-group-md">
+                {% if 'options' in session %}
+                    <button type="button" id="btn-toggle-video" class="btn btn-danger" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
+                {% else %}
+                    <button type="button" id="btn-toggle-video" class="btn btn-success" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
+                {% endif %}
+                 <button type="button" id="btn-image" class="btn btn-success" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
+                  <button type="button" id="btn-sound" class="btn btn-success" title="Include sound" onclick="alert('feture in develop...')";><span class="glyphicon glyphicon-volume-up"/></button>
+                   <button type="button" id="btn-lg2" class="btn btn-success" title="Download a Photo" onclick="document.location.href='get_frame';"><span class="glyphicon glyphicon-download-alt"/></button>
+              </div>
+            </div>
+        </div>
+        <div id="sectionB" class="tab-pane fade">
+            <h3>Online Security</h3>
+            <br>
+
+            <div class="alert alert-info fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Note!</strong> Please fill configuration before
+            </div>
+            {% if online != None and online.is_alive() %}
+
+            <div class="alert alert-danger">
+                <strong>Importent!</strong> The Online Security is alredy active
+            </div>
+                 <form action="toggle_online" method="post">
+                     <button type="submit" class="btn btn-default" name = "submit" value = "off" >Stop Online Secure</button>
+                 </form>
+            {% else %}
+            <form action="toggle_online" method="post" class="form-horizontal" role="form">
+            <div class="form-group">
+                      <label for="detection" class="control-label col-md-2">Detection Method:</label>
+                      <div class="col-md-6">
+                      <select name="method" class="form-control" id="detection">
+                           <option value="face">Face Detection</option>
+                           <option value="move">Movement Detection</option>
+                           <option value="ubody">Upper Body Detection</option>
+                           <option value="fbody">Full Body Detection</option>
+                           <option value="custom">Custom Detection</option>
+                       </select>
+                       </div>
+                </div>
+                    <div class="form-group">
+                     <label for="slider" class="control-label col-md-2">Sensitivity</label>
+                     <div class="col-md-6">
+                        <input type="range" name="sensitive" id="slider" min="0" max="10" class="form-control">
+                     </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                              <label><input type="checkbox" value="sound" name="chk-sound"> Apply an alarm sound </label>
+                             </div>
+                         </div>
+                     </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                              <label><input type="checkbox" value="mail" name="chk-mail"> Apply mail </label>
+                             </div>
+                         </div>
+                     </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                              <label><input type="checkbox" value="notification" name="chk-not"> Apply Notification </label>
+                             </div>
+                         </div>
+                     </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                           <button type="submit" class="btn btn-default">Submit</button>
+                         </div>
+                     </div>
+                  </form>
+            {% endif %}
+            </div>
+        <div id="settings" class="tab-pane fade">
+            <h3>Settings</h3>
+             <p>In Develop...</p>
+         </div>
+
+    </div>
+</div>
+</body>
+</html>                                		
