@@ -28,7 +28,6 @@ def get_pw(username):
 def hash_pw(password):
     return hashlib.sha224(password).hexdigest()
 
-
 @app.route('/')
 @auth.login_required
 def index():
@@ -38,7 +37,6 @@ def index():
     else:
         session.pop('options',None)
     return render_template('index.html', online = online)
-
 
 def gen(camera, save=False, vstart=False):
     while True:
@@ -56,6 +54,7 @@ def video_feed():
     else:
         return Response(gen(cmra),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+                    
 @app.route('/get_frame')
 @auth.login_required
 def get_frame():
@@ -66,12 +65,14 @@ def get_frame():
         f.write(frame)
         return ('', 204)
     return send_file(io.BytesIO(frame))
+    
 @app.route('/stopV')
 @auth.login_required
 def stopV():
     session.pop('options',None)
     cmra.endVideo()
     return redirect(url_for('index'))
+    
 @app.route('/toggle_online',methods=['POST'])
 @auth.login_required
 def toggle_online():
@@ -94,8 +95,3 @@ if __name__ == '__main__':
         app.run(threaded=True,host=conf.get('Connection')['ip'], port=int(conf.get('Connection')['port']) ,ssl_context=context)
     else:
         app.run(threaded=True,host=conf.get('Connection')['ip'], port=int(conf.get('Connection')['port']))
-
-    
-
-    
-
