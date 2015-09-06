@@ -1,4 +1,5 @@
 #Cyber-Camera
+<i>by Amir Fefer </i><br> <br>
 Transform your simple web cam to a smart security cam <br>
 Watch your webcam anywhere record a video or take a snapshot, from a secured (HTTPS & HTTP Basic Auth) interface. <br>
 Apply a smart protection, which play alarm, send email and smarthphone notifications when a Suspicious activity captured. 
