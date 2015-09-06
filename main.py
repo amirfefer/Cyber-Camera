@@ -91,9 +91,9 @@ def toggle_online():
 app.secret_key = os.urandom(24)
 if __name__ == '__main__':
     if conf.boolean('Connection','https'):
-        app.run(threaded=True,host='127.0.0.1', port=int(conf.get('Connection')['port']) ,ssl_context=context)
+        app.run(threaded=True,host=conf.get('Connection')['ip'], port=int(conf.get('Connection')['port']) ,ssl_context=context)
     else:
-        app.run(threaded=True,host='127.0.0.1', port=int(conf.get('Connection')['port']))
+        app.run(threaded=True,host=conf.get('Connection')['ip'], port=int(conf.get('Connection')['port']))
 
     
 
