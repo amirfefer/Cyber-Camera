@@ -6,7 +6,7 @@ The smart protection can be active from anywhere, and based on face/full body/up
 
 #Screenshots
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/stream.jpg) 
-![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/online.jpg) 
+![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/online.jpg)
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/record.jpg)
 
 #Installations and Requirements
