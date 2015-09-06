@@ -13,10 +13,10 @@ class VideoCamera(object):
         self.video = cv2.VideoCapture(int(self.config.get('Other')['camera']))
         self.videoWriter = None
         self.online = False
-        #self.binary = True
     
     def __del__(self):
         self.video.release()
+        
     def finished(self):
         self.video.release()
         
@@ -24,8 +24,6 @@ class VideoCamera(object):
         timestr = time.strftime("%Y%m%d-%H%M%S")
         self.videoWriter = cv2.VideoWriter('testvideo' +timestr +".avi", cv2.cv.CV_FOURCC('M','J','P','G'), 15,
                (640,480))
-
-
 
     def start(self,sens, method, mail, sound, notif):
         self.online = False
@@ -50,7 +48,6 @@ class VideoCamera(object):
                 minNeighbors=5,
                 flags=cv2.cv.CV_HAAR_SCALE_IMAGE
                  )
-            #print type(faces)
             if type(faces) is not tuple:
                 count+=1
             if self.online:
@@ -74,16 +71,14 @@ class VideoCamera(object):
                         print "ERROR"
                 if sound:
                     winsound.PlaySound(self.config.get('Other')['alarm'], winsound.SND_FILENAME)
-                return
-                   
+                return  
             if iterator==12:
                 iterator=0
                 count=0
 
-            
-
     def endVideo(self):
         self.videoWriter.release()
+        
     def get_frame(self,faced,saved=False, video=False, videoStop = False):
         while True:
             success, image = self.video.read()
