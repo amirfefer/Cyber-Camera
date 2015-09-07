@@ -27,8 +27,8 @@ Create server certificate and key for TLS (optional),  you can follow up the man
 The user password must be in sha224, you can use a generator like [this](http://www.miniwebtool.com/sha224-hash-generator/)
 Run python main.py in command line, 
 
-Congratulation!,  your webcam transformed into a smart security cam. <br>
-Don't forget to  port forward in your router config. And you can use ddns service like [noip](http://www.noip.com/free) 
+Congratulation! your webcam transformed into a smart security cam. <br>
+Don't forget to  port forward, plus you can use ddns service like [noip](http://www.noip.com/free) <br>
 If you encounter a bug, or have some suggestion, please  let me know, or contribute, I'll appreciate it.
 
 amirfefer@gmail.com
