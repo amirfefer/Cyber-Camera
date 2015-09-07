@@ -53,7 +53,7 @@ class VideoCamera(object):
             if self.online:
                 print "Stopped by User"
                 return
-            if count == sens:
+            if count == 6 - sens:
                 print "Face Detected!"
                 img = self.get_frame(False)
                 if notif:
@@ -72,7 +72,7 @@ class VideoCamera(object):
                 if sound:
                     winsound.PlaySound(self.config.get('Other')['alarm'], winsound.SND_FILENAME)
                 return  
-            if iterator==12:
+            if iterator==5:
                 iterator=0
                 count=0
 
