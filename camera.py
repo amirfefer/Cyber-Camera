@@ -10,7 +10,7 @@ class VideoCamera(object):
     binary = True
     def __init__(self, config):
         self.config = config
-        self.video = cv2.VideoCapture(int(self.config.get('Other')['camera']))
+        self.video = cv2.VideoCapture(int(self.config.get('Video')['camera']))
         self.videoWriter = None
         self.online = False
     
@@ -22,7 +22,7 @@ class VideoCamera(object):
         
     def start_video(self):
         timestr = time.strftime("%Y%m%d-%H%M%S")
-        self.videoWriter = cv2.VideoWriter('testvideo' +timestr +".avi", cv2.cv.CV_FOURCC('M','J','P','G'), 15,
+        self.videoWriter = cv2.VideoWriter(self.config.get('File')['videos'] +'video' +timestr +".avi", cv2.cv.CV_FOURCC('M','J','P','G'), int(self.config.get('Video')['fps']),
                (640,480))
 
     def start(self,sens, method, mail, sound, notif):
