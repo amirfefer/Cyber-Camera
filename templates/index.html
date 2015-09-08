@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=400, initial-scale=1">
 <title>Cyber Camera</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -13,9 +13,34 @@
 	.bs-example{
 		margin: 20px;
 	}
+    .header{
+        font-family: "Impact", Charcoal, sans-serif;
+        font-size: 20px;
+    }
 </style>
 </head>
 <body>
+<div class="navbar navbar-default" role="navigation">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</button>
+<a href= "#" class="navbar-brand">
+    <img alt="Cyber Camera"  src="{{ url_for('static', filename='camera.png') }}" width="32" height="32">
+    </a>
+</div>
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav pull-left">
+        <p class="navbar-text header">Cyber Camera</p>
+         <li ><a href="#">Help</a></li>
+        <li ><a href="#">About</a></li>
+
+    </ul>
+</div>
+</div>
 <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
         <li class="active "><a href="#sectionA">Stream <i class="glyphicon glyphicon-facetime-video"></i></a></li>
@@ -52,12 +77,14 @@
             <h3>Online Security</h3>
             <br>
 
-            <div class="alert alert-info fade in">
+            <div id="note" class="alert alert-info fade in">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
                 <strong>Note!</strong> Please fill configuration before
             </div>
             {% if online != None and online.is_alive() %}
-
+            <script>
+            $('#note').alert('close');
+            </script>
             <div class="alert alert-danger">
                 <strong>Importent!</strong> The Online Security is alredy active
             </div>
@@ -87,21 +114,21 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
-                              <label><input type="checkbox" value="sound" name="chk-sound"> Apply an alarm sound </label>
+                              <label><input type="checkbox" value="sound" name="chk-sound"> Play alarm</label>
                              </div>
                          </div>
                      </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
-                              <label><input type="checkbox" value="mail" name="chk-mail"> Apply mail </label>
+                              <label><input type="checkbox" value="mail" name="chk-mail">Send e-mail notification</label>
                              </div>
                          </div>
                      </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
-                              <label><input type="checkbox" value="notification" name="chk-not"> Apply Notification </label>
+                              <label><input type="checkbox" value="notification" name="chk-not"> Send smartphone notification </label>
                              </div>
                          </div>
                      </div>
