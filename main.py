@@ -61,7 +61,7 @@ def get_frame():
     frame = cmra.get_frame(False)
     if request.args.get('options') == 'save':
         timestr = time.strftime("%Y%m%d-%H%M%S")
-        f = open(conf.get('File')['images'] + 'image' + timestr +'.jpg', 'wb')
+        f = open(conf.get('File')['photos '] + 'image' + timestr +'.jpg', 'wb')
         f.write(frame)
         return ('', 204)
     return send_file(io.BytesIO(frame))
