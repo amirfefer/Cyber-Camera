@@ -6,6 +6,9 @@ Apply a smart protection, which play alarm, send email and smarthphone notificat
 The smart protection can be active from anywhere, and based on face/full body/upper body detection 
 
 #Screenshots
+From your browser:
+![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshotDesktop.png?raw=true) <br>
+Or on the go: <br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/stream.jpg) 
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/online.jpg)
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/record.jpg)
