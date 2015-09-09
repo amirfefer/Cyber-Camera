@@ -95,8 +95,6 @@ class VideoCamera(object):
                 continue
             else:
                 break
-        if saved:
-            cv2.imwrite("image.jpg",image)
         if video:
             self.videoWriter.write(image)
             cv2.circle(image,(20,20), 15, (0,0,255), -1)
