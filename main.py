@@ -8,7 +8,11 @@ import threading
 import time
 import hashlib
 import ssl
+import logging
+import datetime
+
 conf = config.Configuration()
+logging.basicConfig(filename='app.log',level=logging.DEBUG)
 if conf.boolean('Connection','https'):
     context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
     context.load_cert_chain(conf.get('Connection')['certificate'], conf.get('Connection')['key'])
@@ -18,6 +22,7 @@ auth = flask_httpauth.HTTPBasicAuth()
 user = None
 online = None
 cmra = camera.VideoCamera(conf)
+
 @auth.get_password
 def get_pw(username):
     global user
@@ -63,6 +68,7 @@ def get_frame():
         timestr = time.strftime("%Y%m%d-%H%M%S")
         f = open(conf.get('File')['photos '] + 'image' + timestr +'.jpg', 'wb')
         f.write(frame)
+        logging.info('Snapshot taken at  ' + str(datetime.datetime.now()))
         return ('', 204)
     return send_file(io.BytesIO(frame))
     

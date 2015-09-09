@@ -43,4 +43,3 @@ def sendMessege(img_data, conf):
         server = smtplib.SMTP_SSL(conf.get('Mailer')['smtp'], int(conf.get('Mailer')['port']))
         server.login(_user, _pwd)
         server.sendmail(FROM, TO, msg.as_string())
-        print "Send Sucseefully"
