@@ -1,3 +1,6 @@
+import werkzeug
+import jinja2
+import numpy
 from flask import Flask, render_template, Response,send_file, request, session, redirect, url_for
 import camera
 import flask_httpauth
@@ -7,21 +10,19 @@ import io
 import threading
 import time
 import hashlib
-import ssl
 import logging
 import datetime
+import ssl
 
+app = Flask(__name__)
 conf = config.Configuration()
 logging.basicConfig(filename='app.log',level=logging.DEBUG)
-if conf.boolean('Connection','https'):
-    context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-    context.load_cert_chain(conf.get('Connection')['certificate'], conf.get('Connection')['key'])
-app = Flask(__name__)
 auth = flask_httpauth.HTTPBasicAuth()
-
+app.secret_key = os.urandom(24)
 user = None
 online = None
 cmra = camera.VideoCamera(conf)
+
 
 @auth.get_password
 def get_pw(username):
@@ -37,7 +38,8 @@ def hash_pw(password):
 @auth.login_required
 def index():
     if request.args.get('options') == 'record':
-        cmra.start_video()
+        recording = threading.Thread(target=cmra.record)
+        recording.start()
         session['options'] = 'record'
     else:
         session.pop('options',None)
@@ -66,7 +68,7 @@ def get_frame():
     frame = cmra.get_frame(False)
     if request.args.get('options') == 'save':
         timestr = time.strftime("%Y%m%d-%H%M%S")
-        f = open(conf.get('File')['photos '] + 'image' + timestr +'.jpg', 'wb')
+        f = open(conf.get('File')['photos'] + 'image' + timestr +'.jpg', 'wb')
         f.write(frame)
         logging.info('Snapshot taken at  ' + str(datetime.datetime.now()))
         return ('', 204)
@@ -95,9 +97,10 @@ def toggle_online():
     online.start()
     return redirect(url_for('index'))
 
-app.secret_key = os.urandom(24)
-if __name__ == '__main__':
+if __name__ == "__main__":
     if conf.boolean('Connection','https'):
+        context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+        context.load_cert_chain(conf.get('Connection')['certificate'], conf.get('Connection')['key'])
         app.run(threaded=True,host=conf.get('Connection')['ip'], port=int(conf.get('Connection')['port']) ,ssl_context=context)
     else:
         app.run(threaded=True,host=conf.get('Connection')['ip'], port=int(conf.get('Connection')['port']))

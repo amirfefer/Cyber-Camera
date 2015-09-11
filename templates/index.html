@@ -35,11 +35,38 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav pull-left">
         <p class="navbar-text header">Cyber Camera</p>
-         <li ><a href="#">Help</a></li>
-        <li ><a href="#">About</a></li>
-
+         <li data-toggle="modal" data-target="#aboutModal" ><a href="#">About</a></li>
     </ul>
 </div>
+</div>
+
+<div id="aboutModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">About</h4>
+      </div>
+      <div class="modal-body">
+        <p>Cyber Camera is an application that turns your old or simple webcam into a smart security home surveillance system </p>
+        <p>You are welcome to the <a href="https://github.com/amirfefer/Cyber-Camera"> GitHub </a> project site , and be a part of it </p>
+        <p>If you encounter a bug, please <a href="mailto:amirfefer@gmail.com?Subject=Cyber-Camera" target="_top">email me </a>, or open an <a href="https://github.com/amirfefer/Cyber-Camera/issues/new"> issue </a> in GitHub</p>
+        <br>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+         <input type="hidden" name="cmd" value="_s-xclick">
+         <input type="hidden" name="hosted_button_id" value="YMMWTJDFKM68A">
+         <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+         <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
