@@ -1,6 +1,3 @@
-import werkzeug
-import jinja2
-import numpy
 from flask import Flask, render_template, Response,send_file, request, session, redirect, url_for
 import camera
 import flask_httpauth
