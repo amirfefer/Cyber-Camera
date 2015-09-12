@@ -79,7 +79,7 @@ class VideoCamera(object):
             if iterator==10:
                 iterator=0
                 count=0
-    def record(self):
+    def record(self,upload, cloud):
         self.recording = True
         logging.info('Video recording started at ' + str(datetime.datetime.now()))
         timestr = time.strftime("%Y%m%d-%H%M%S")
@@ -96,6 +96,11 @@ class VideoCamera(object):
                 videoWriter.write(image)
                 time.sleep(0.08)
         videoWriter.release()
+        if upload:
+            f = open(self.config.get('File')['videos'] + 'video' + timestr + ".avi", 'rb')
+            cloud.upload_file(f, 'video' + timestr + ".avi")
+
+
 
     def endVideo(self):
         self.recording = False

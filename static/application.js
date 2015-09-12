@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $("#cloud-note").hide();
     $("#myTab a").click(function(e){
     	e.preventDefault();
     	$(this).tab('show');
@@ -25,9 +26,18 @@ $(document).ready(function(){
       $("#btn-toggle-video").click(function(e){
         e.preventDefault();
 
-        if ($( "#btn-toggle-video" ).hasClass("btn-success"))
-            document.location.href='?options=record';
+        if ($( "#btn-toggle-video" ).hasClass("btn-success")){
+            if ($("#btn-cloud").hasClass("btn-info"))
+                document.location.href='?options=record&cloud=true'
+            else
+                document.location.href='?options=record';
+            }
         else
             document.location.href='stopV';
+      });
+      $("#btn-cloud").click(function(e){
+        e.preventDefault();
+        $("#btn-cloud").toggleClass('btn-info');
+        $("#cloud-note").toggle("slow");
       });
 });

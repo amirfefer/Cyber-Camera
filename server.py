@@ -1,3 +1,7 @@
+import numpy
+import werkzeug
+import jinja2
+import jinja2.ext
 from flask import Flask, render_template, Response,send_file, request, session, redirect, url_for
 import camera
 import flask_httpauth
@@ -19,8 +23,8 @@ app.secret_key = os.urandom(24)
 user = None
 online = None
 cmra = camera.VideoCamera(conf)
-
-
+import cloud
+drop = cloud.DropObj(conf)
 @auth.get_password
 def get_pw(username):
     global user
@@ -31,16 +35,29 @@ def get_pw(username):
 def hash_pw(password):
     return hashlib.sha224(password).hexdigest()
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @auth.login_required
 def index():
-    if request.args.get('options') == 'record':
-        recording = threading.Thread(target=cmra.record)
-        recording.start()
-        session['options'] = 'record'
+    cloud = False
+    auth = False
+    error = ''
+    if request.method == 'POST':
+        key = request.form['code']
+        drop.auth(key)
+        dropbox = '#'
     else:
-        session.pop('options',None)
-    return render_template('index.html', online = online)
+        dropbox = drop.get_website()
+        if conf.get('Cloud')['token'] == 'none':
+            error = " You need to register your dropbox account first, go to settings tab."
+        if request.args.get('options') == 'record':
+            if request.args.has_key('cloud'):
+                cloud = True
+            recording = threading.Thread(target=cmra.record,args=[cloud,drop] )
+            recording.start()
+            session['options'] = 'record'
+        else:
+            session.pop('options',None)
+    return render_template('index.html', online = online, dropbox = dropbox, error = error)
 
 def gen(camera, save=False, vstart=False):
     while True:

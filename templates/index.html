@@ -17,6 +17,15 @@
         font-family: "Impact", Charcoal, sans-serif;
         font-size: 20px;
     }
+
+    .center {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+    .hidden {
+    visibility: hidden;
+    }
 </style>
 </head>
 <body>
@@ -53,7 +62,8 @@
         <p>Cyber Camera is an application that turns your old or simple webcam into a smart security home surveillance system </p>
         <p>You are welcome to the <a href="https://github.com/amirfefer/Cyber-Camera"> GitHub </a> project site , and be a part of it </p>
         <p>If you encounter a bug, please <a href="mailto:amirfefer@gmail.com?Subject=Cyber-Camera" target="_top">email me </a>, or open an <a href="https://github.com/amirfefer/Cyber-Camera/issues/new"> issue </a> in GitHub</p>
-        <br>
+
+          <br>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
          <input type="hidden" name="cmd" value="_s-xclick">
          <input type="hidden" name="hosted_button_id" value="YMMWTJDFKM68A">
@@ -62,6 +72,7 @@
         </form>
       </div>
       <div class="modal-footer">
+          <p align="center"><i> By Amir Fefer </i></p>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -75,9 +86,15 @@
         <li><a href="#settings">Settings <i class="glyphicon glyphicon-cog"></i></a></li>
     </ul>
     <div class="tab-content">
-        <div align="center" id="sectionA" class="tab-pane fade in active">
+        <div align="center"  id="sectionA" class="tab-pane fade in active">
 
-                 <h3>Stream</h3>
+                 <h3 align="left">Stream</h3>
+                <br>
+                <div  id="cloud-note" class="alert alert-info fade in center">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <strong>Attention!</strong>{{error}} Your next video record will upload to cloud
+                </div>
+                <br>
                 <br>
               <div class="btn-group btn-group-md">
                  <button type="button" id="btn-small" class="btn btn-primary">Small</button>
@@ -87,38 +104,45 @@
                 <br><br>
 
         <div id="stream" style="text-align: center;"><IMG id="bg"  SRC="/video_feed" width="320" height="240" >
+            </div>
             <br>
-          <div class="btn-group btn-group-md">
+
+            <div class="btn-group btn-group-md"  align="center">
+                <button type="button" class="btn btn-success" id="btn-cloud" data-toggle="buttons-checkbox" title="While its marked, all your videos and photos will save at your cloud service"> <span class="glyphicon glyphicon-cloud"/></button>
                 {% if 'options' in session %}
                     <button type="button" id="btn-toggle-video" class="btn btn-danger" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
                 {% else %}
                     <button type="button" id="btn-toggle-video" class="btn btn-success" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
                 {% endif %}
+
                  <button type="button" id="btn-image" class="btn btn-success" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
                   <button type="button" id="btn-sound" class="btn btn-success" title="Include sound" onclick="alert('feture in develop...')";><span class="glyphicon glyphicon-volume-up"/></button>
                    <button type="button" id="btn-lg2" class="btn btn-success" title="Download a Photo" onclick="document.location.href='get_frame';"><span class="glyphicon glyphicon-download-alt"/></button>
+
               </div>
             </div>
-        </div>
+
         <div id="sectionB" class="tab-pane fade">
             <h3>Online Security</h3>
             <br>
 
-            <div id="note" class="alert alert-info fade in">
+            <div id="note" class="alert alert-info fade in center">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
                 <strong>Note!</strong> Please fill configuration before
             </div>
+
             {% if online != None and online.is_alive() %}
             <script>
             $('#note').alert('close');
             </script>
-            <div class="alert alert-danger">
+            <div class="alert alert-danger center">
                 <strong>Importent!</strong> The Online Security is alredy active
-            </div>
+            <br>
                  <form action="toggle_online" method="post">
                      <button type="submit" class="btn btn-default" name = "submit" value = "off" >Stop Online Secure</button>
                  </form>
             {% else %}
+                 <br>
             <form action="toggle_online" method="post" class="form-horizontal" role="form">
             <div class="form-group">
                       <label for="detection" class="control-label col-md-2">Detection Method:</label>
@@ -169,7 +193,26 @@
             </div>
         <div id="settings" class="tab-pane fade">
             <h3>Settings</h3>
-             <p>In Develop...</p>
+            <h4>Cloud</h4>
+            <p align="center">For cloud support please register with Dropbox account once:</p>
+            <br>
+
+            <form action="/" method="post">
+<div class="row">
+  <div class="col-md-offset-4 col-md-4">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" onclick="window.open('{{dropbox}}','popUpWindow','height=400,width=600,left=10,top=10,,scrollbars=yes,menubar=no'); return false;"">Get Yor code</button>
+      </span>
+      <input type="text" name="code" class="form-control" placeholder="Enter Your code Here...">
+         <div class="input-group-btn">
+        <button class="btn btn-success" type="submit">Go!</button>
+             </div>
+
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+    </div>
+            </form>
          </div>
 
     </div>
