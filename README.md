@@ -5,10 +5,14 @@ Watch your webcam anywhere, record a video or take a snapshot, from a secured (T
 Apply a smart protection, which play alarm, send email and smarthphone notifications when a suspicious activity captured. 
 The smart protection can be active from anywhere, and based on face/full/upper body detection 
 
-#New features 
-Now your record videos can be upload automatically to Dropbox cloud account by Oauth <br>
-Windows installer will come out soon, stay tuned <br>
-Cam Proxy feture is in develop, it will allow you to connect multiple and remote cameras
+#Features 
+* Watch your webcam stream from anywhere
+* Active protection with email and smartphone notifications based on face/full/upper body detection
+* Recrod a video, or take a snapshot
+* Auto sync recorded video to your Dropbox account
+* Secure TLS/SSL plus http basic authentication
+* responsive Web UI 
+* Windows installer will come out soon, stay tuned
 
 #Screenshots
 
