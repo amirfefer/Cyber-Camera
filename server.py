@@ -1,7 +1,3 @@
-import numpy
-import werkzeug
-import jinja2
-import jinja2.ext
 from flask import Flask, render_template, Response,send_file, request, session, redirect, url_for
 import camera
 import flask_httpauth
@@ -48,19 +44,21 @@ def index():
     else:
         dropbox = drop.get_website()
         if conf.get('Cloud')['token'] == 'none':
-            error = " You need to register your dropbox account first, go to settings tab."
+            error = "You need to register your dropbox account first, go to settings tab."
         if request.args.get('options') == 'record':
             if request.args.has_key('cloud'):
                 cloud = True
             recording = threading.Thread(target=cmra.record,args=[cloud,drop] )
             recording.start()
             session['options'] = 'record'
-        else:
-            session.pop('options',None)
+            return '<IMG id="bg"  SRC="/video_feed_record" width="320" height="240" >'
+
+
     return render_template('index.html', online = online, dropbox = dropbox, error = error)
 
 def gen(camera, save=False, vstart=False):
     while True:
+
         frame = camera.get_frame(False,save,vstart)
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
@@ -75,7 +73,13 @@ def video_feed():
     else:
         return Response(gen(cmra),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-                    
+
+@app.route('/video_feed_record')
+@auth.login_required
+def video_feed2():
+    return Response(gen(cmra,False,True),
+                mimetype='multipart/x-mixed-replace; boundary=frame')
+
 @app.route('/get_frame')
 @auth.login_required
 def get_frame():
@@ -93,7 +97,7 @@ def get_frame():
 def stopV():
     session.pop('options',None)
     cmra.endVideo()
-    return redirect(url_for('index'))
+    return '<IMG id="bg"  SRC="/video_feed" width="320" height="240" >'
     
 @app.route('/toggle_online',methods=['POST'])
 @auth.login_required

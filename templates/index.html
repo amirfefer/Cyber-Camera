@@ -9,6 +9,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
  <script type="text/javascript" src="{{ url_for('static', filename='application.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='addtohomescreen.css') }}">
+<script src="{{ url_for('static', filename='addtohomescreen.js') }}"></script>
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='icon-152x152.png') }}" sizes="152x152" />
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='icon-16x16.png') }}" sizes="16x16" />
+<script>
+addToHomescreen();
+</script>
 <style type="text/css">
 	.bs-example{
 		margin: 20px;
@@ -109,11 +116,9 @@
 
             <div class="btn-group btn-group-md"  align="center">
                 <button type="button" class="btn btn-success" id="btn-cloud" data-toggle="buttons-checkbox" title="While its marked, all your videos and photos will save at your cloud service"> <span class="glyphicon glyphicon-cloud"/></button>
-                {% if 'options' in session %}
-                    <button type="button" id="btn-toggle-video" class="btn btn-danger" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
-                {% else %}
+
                     <button type="button" id="btn-toggle-video" class="btn btn-success" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
-                {% endif %}
+
 
                  <button type="button" id="btn-image" class="btn btn-success" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
                   <button type="button" id="btn-sound" class="btn btn-success" title="Include sound" onclick="alert('feture in develop...')";><span class="glyphicon glyphicon-volume-up"/></button>

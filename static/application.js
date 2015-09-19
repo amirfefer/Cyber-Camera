@@ -25,7 +25,20 @@ $(document).ready(function(){
       });
       $("#btn-toggle-video").click(function(e){
         e.preventDefault();
-
+        var url;
+        if ($( "#btn-toggle-video" ).hasClass("btn-success")){
+            if ($("#btn-cloud").hasClass("btn-info"))
+                url = '?options=record&cloud=true';
+            else
+                url = "?options=record";
+        }
+        if ($( "#btn-toggle-video" ).hasClass("btn-danger"))
+            url = "stopV";
+        $.ajax({url: window.location.href +url, success: function(result){
+            $( "#btn-toggle-video" ).toggleClass("btn-danger")
+            $("#stream").html(result);
+         }});
+         /*
         if ($( "#btn-toggle-video" ).hasClass("btn-success")){
             if ($("#btn-cloud").hasClass("btn-info"))
                 document.location.href='?options=record&cloud=true'
@@ -33,7 +46,7 @@ $(document).ready(function(){
                 document.location.href='?options=record';
             }
         else
-            document.location.href='stopV';
+            document.location.href='stopV'; */
       });
       $("#btn-cloud").click(function(e){
         e.preventDefault();
