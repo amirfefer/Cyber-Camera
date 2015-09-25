@@ -11,8 +11,8 @@ The smart protection can be active from anywhere, and based on face/full/upper b
 * Recrod a video, or take a snapshot
 * Auto sync recorded video to your Dropbox account
 * Secure TLS/SSL plus http basic authentication
-* responsive Web UI 
-* Record your voice and it played automatically at home
+* Responsive Web UI 
+* Record your voice and it automatically played at home
 
 #Screenshots
 
