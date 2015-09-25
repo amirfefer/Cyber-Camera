@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//cdn.WebRTC-Experiment.com/RecordRTC.js"></script>
  <script type="text/javascript" src="{{ url_for('static', filename='application.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='addtohomescreen.css') }}">
 <script src="{{ url_for('static', filename='addtohomescreen.js') }}"></script>
@@ -122,7 +123,7 @@ addToHomescreen();
 
 
                  <button type="button" id="btn-image" class="btn btn-success" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
-                  <button type="button" id="btn-sound" class="btn btn-success" title="Include sound" onclick="alert('feture in develop...')";><span class="glyphicon glyphicon-volume-up"/></button>
+                  <button type="button" id="btn-sound" class="btn btn-success" title="Record yourself and play it at home" ><span class="glyphicon glyphicon-volume-up"/></button>
                    <button type="button" id="btn-lg2" class="btn btn-success" title="Download a Photo" onclick="document.location.href='get_frame';"><span class="glyphicon glyphicon-download-alt"/></button>
 
               </div>

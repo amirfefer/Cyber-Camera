@@ -63,6 +63,13 @@ def gen(camera, save=False, vstart=False):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
+@app.route('/audio', methods=['POST'])
+@auth.login_required
+def audio():
+    file = request.files['edition[audio]']
+    file.save("audio.wav")
+    cmra.playAudio()
+    return ('', 204)
 @app.route('/video_feed')
 @auth.login_required
 def video_feed():

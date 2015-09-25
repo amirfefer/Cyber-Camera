@@ -53,4 +53,41 @@ $(document).ready(function(){
         $("#btn-cloud").toggleClass('btn-info');
         $("#cloud-note").toggle("slow");
       });
+      var recordRTC = null;
+       $("#btn-sound").click(function(e){
+        e.preventDefault();
+
+        if ($("#btn-sound").hasClass('btn-danger')){
+            recordRTC.stopRecording(function(audioURL) {
+            var formData = new FormData();
+            formData.append('edition[audio]', recordRTC.getBlob())
+            var uri = location.href + 'audio';
+
+            $.ajax({
+                type: 'POST',
+                url: uri,
+                 data: formData,
+                 contentType: false,
+                 cache: false,
+                 processData: false,
+             })
+            });
+        }
+        else
+        {
+            var session = {
+                audio: true,
+                video: false
+            };
+
+            navigator.getUserMedia(session, function (MediaStream) {
+                recordRTC = RecordRTC(MediaStream);
+                recordRTC.startRecording();
+                }, onError);
+        }
+       $("#btn-sound").toggleClass('btn-danger');
+        })
 });
+function onError() {
+console.log("ERROR");
+}

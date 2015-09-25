@@ -1,5 +1,4 @@
 import dropbox
-import config
 class DropObj(object):
     def __init__(self, conf):
         self.app_key = 'ck2ifx3agl50908'

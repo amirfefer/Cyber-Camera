@@ -101,7 +101,8 @@ class VideoCamera(object):
             cloud.upload_file(f, 'video' + timestr + ".avi")
 
 
-
+    def playAudio(self):
+        winsound.PlaySound("audio.wav", winsound.SND_FILENAME)
     def endVideo(self):
         self.recording = False
 
