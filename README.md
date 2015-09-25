@@ -12,7 +12,7 @@ The smart protection can be active from anywhere, and based on face/full/upper b
 * Auto sync recorded video to your Dropbox account
 * Secure TLS/SSL plus http basic authentication
 * responsive Web UI 
-* Windows installer will come out soon, stay tuned
+* Record your voice and it played automatically at home
 
 #Screenshots
 
@@ -24,6 +24,7 @@ Watch simply on the go: <br><br>
 Or from your browser: <br><br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshotDesktop.png?raw=true) <br>
 #Installations and Requirements
+<b> Windows installer is ready for testing! check in release tab </b><br>
 Tested on Windows 7&8, for linux need some code modification  <br>
 Download and install python 2.7.9 (32 bit only)
 You can use lower 2.7.x but without SSL/TLS support, not recommended!
