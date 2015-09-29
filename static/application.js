@@ -81,7 +81,7 @@ $(document).ready(function(){
             };
 
             navigator.getUserMedia(session, function (MediaStream) {
-                recordRTC = RecordRTC(MediaStream);
+                recordRTC = RecordRTC(MediaStream,{  recorderType: StereoAudioRecorder});
                 recordRTC.startRecording();
                 }, onError);
         }
