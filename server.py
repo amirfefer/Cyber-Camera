@@ -60,8 +60,7 @@ def gen(camera, save=False, vstart=False):
     while True:
 
         frame = camera.get_frame(False,save,vstart)
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+	yield (b'--frame\r\nContent-Type: image/jpeg\r\n\r\n{0}\r\n\r\n'.format(frame))
 
 @app.route('/audio', methods=['POST'])
 @auth.login_required

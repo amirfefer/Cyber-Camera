@@ -1,5 +1,5 @@
 import cv2
-import winsound, sys
+import sys
 import os
 import mailer
 import logging
@@ -7,7 +7,11 @@ from threading import Thread
 import time
 import config
 import datetime
+import pygame
+
 logging.basicConfig(filename='app.log',level=logging.DEBUG)
+pygame.mixer.init()
+
 class VideoCamera(object):
     binary = True
     def __init__(self, config):
@@ -66,8 +70,12 @@ class VideoCamera(object):
                         mailer.send_notification(self.config)
                     except:
                         logging.warn('Error sending notification  ' + str(datetime.datetime.now()))
-                if sound:
-                    winsound.PlaySound(self.config.get('Sound')['alarm'], winsound.SND_FILENAME)
+                if sound: 
+			pygame.mixer.music.load(self.config.get('Sound')['alarm'])
+			pygame.mixer.music.play()
+			while pygame.mixer.music.get_busy() == True:
+			    continue
+
                 if mail:
                     try:
                         logging.info('Sending email ' + str(datetime.datetime.now()))
@@ -102,7 +110,11 @@ class VideoCamera(object):
 
 
     def playAudio(self):
-        winsound.PlaySound("audio.wav", winsound.SND_FILENAME)
+	pygame.mixer.music.load("audio.wav")
+	pygame.mixer.music.play()
+	while pygame.mixer.music.get_busy() == True:
+		continue
+
     def endVideo(self):
         self.recording = False
 
