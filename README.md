@@ -38,7 +38,7 @@ Install [pycrypt](https://pypi.python.org/pypi/pycrypto) <br>
 
 It's importent to fill out the conf file, pay attention to the comments.
 For TLS/SSL support, make server's certificate and a key (optional),  you can follow up the manual in the conf file. <br>
-The user password must be in sha224, you can use a generator like [this](http://www.miniwebtool.com/sha224-hash-generator/) <br>
+The user's password must be in sha224, you can use a generator like [this](http://www.miniwebtool.com/sha224-hash-generator/) <br>
 To run the server under windows, run cmd and type 'python server.py' <br>
 
 Congratulation! your webcam transformed into a smart security cam. <br>
