@@ -1,6 +1,6 @@
 #Cyber-Camera
 <i>by Amir Fefer </i><br> <br>
-Transform your simple web cam to a smart security home surveillance system.  <br>
+Turn your simple web cam into a smart security home surveillance system.  <br>
 Watch your webcam anywhere, record a video or take a snapshot, from a secured (TLS/SSL & HTTP Basic Auth) web interface. <br>
 Apply a smart protection, which play alarm, send email and smarthphone notifications when a suspicious activity captured. 
 The smart protection can be active from anywhere, and based on face/full/upper body detection 
@@ -12,7 +12,7 @@ The smart protection can be active from anywhere, and based on face/full/upper b
 * Auto sync recorded video to your Dropbox account
 * TLS/SSL plus http basic authentication secured
 * Responsive Web UI 
-* Record your voice and it automatically played at home
+* Audio Stream - record yourself.
 
 #Screenshots
 
@@ -36,14 +36,14 @@ Install [numpy 1.9.2](http://sourceforge.net/projects/numpy/files/)<br>
 Install [opencv 2.4](https://sourceforge.net/projects/opencvlibrary/files/opencv-win/2.4.11/opencv-2.4.11.exe) (Not tested with opencv3)<br>
 Install [pycrypt](https://pypi.python.org/pypi/pycrypto) <br>
 
-Now fill out the conf file, pay attention to comments.
-For TLS/SSL support, make server certificate and key (optional),  you can follow up the manual in the conf file.
+It's importent to fill out the conf file, pay attention to the comments.
+For TLS/SSL support, make server's certificate and a key (optional),  you can follow up the manual in the conf file. <br>
 The user password must be in sha224, you can use a generator like [this](http://www.miniwebtool.com/sha224-hash-generator/) <br>
-In cmd run python server.py <br>
+To run the server under windows, run cmd and type 'python server.py' <br>
 
 Congratulation! your webcam transformed into a smart security cam. <br>
 Don't forget to  port forward, plus you can use ddns service like [noip](http://www.noip.com/free) <br>
-If you encounter a bug, or have some suggestion, please  let me know by email or open issue. <br>
+If you encounter a bug, or have some suggestions, please  let me know by email or open an issue. <br>
 
 amirfefer@gmail.com
 
