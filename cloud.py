@@ -5,7 +5,7 @@ class DropObj(object):
         self.app_secret = 'w95xtn3ouucj6ru'
         self.token = conf.get('Cloud')['token']
         if self.token != 'none':
-            self.client = dropbox.client.DropboxClient(self.token)
+            self.client = dropbox.Dropbox(self.token)
         else:
             self.client = None
         self.flow = None
@@ -19,12 +19,12 @@ class DropObj(object):
 
     def auth(self,key):
         if self.token != 'none':
-            self.client = dropbox.client.DropboxClient(self.token)
+            self.client = dropbox.Dropbox(self.token)
         else:
             key.strip()
             access_token, user_id = self.flow.finish(key)
             self.conf.write('Cloud', 'token',access_token )
-            self.client = dropbox.client.DropboxClient(access_token)
+            self.client = dropbox.Dropboxt(access_token)
 
     def upload_file(self,file, name):
-        self.client.put_file('/'+name, file)
+        self.client.files_upload(file, name)

@@ -98,7 +98,8 @@ class VideoCamera(object):
         videoWriter.release()
         if upload:
             f = open(self.config.get('File')['videos'] + 'video' + timestr + ".avi", 'rb')
-            cloud.upload_file(f, 'video' + timestr + ".avi")
+            data = f.read()
+            cloud.upload_file(data, '/video' + timestr + ".avi")
 
 
     def playAudio(self):
