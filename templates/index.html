@@ -31,6 +31,30 @@ addToHomescreen();
         width: 50%;
         padding: 10px;
     }
+
+    .imagewrap {
+    display:inline-block;
+    position:relative;
+
+    }
+    .inButtons {
+    position:absolute;
+    top:0;
+    right:0;
+    }
+
+    .in-bottom-buttons {
+    position:absolute;
+    bottom:0;
+    right:0;
+    }
+
+    .right {
+    position: absolute;
+    left: 33%;
+    border: none;
+    padding: 10px;
+    }
     .hidden {
     visibility: hidden;
     }
@@ -91,7 +115,7 @@ addToHomescreen();
     <ul class="nav nav-tabs" id="myTab">
         <li class="active "><a href="#sectionA">Stream <i class="glyphicon glyphicon-facetime-video"></i></a></li>
         <li><a href="#sectionB">Active <i class="glyphicon glyphicon-check"></i></a></li>
-        <li><a href="#settings">Settings <i class="glyphicon glyphicon-cog"></i></a></li>
+        <li><a href="#settings">Cloud Settings <i class="glyphicon glyphicon-cog"></i></a></li>
     </ul>
 
     <div class="tab-content">
@@ -104,33 +128,28 @@ addToHomescreen();
                     <strong>Attention!</strong>{{error}} Your next video record will upload to cloud
                 </div>
                 <br>
-                <br>
-              <div class="btn-group btn-group-md">
-                 <button type="button" id="btn-small" class="btn btn-primary">Small</button>
-                 <button type="button" id="btn-med" class="btn btn-primary">Medium</button>
-                  <button type="button" id="btn-lg" class="btn btn-primary">Large</button>
-              </div>
-                <br><br>
-
-        <div id="stream" style="text-align: center;"><IMG id="bg"  SRC="/video_feed" width="320" height="240" >
-            </div>
-            <br>
-
-            <div class="btn-group btn-group-md"  align="center">
+            <br/>
+            <div class="imagewrap">
+            <div  id="stream" style="text-align: center;"><IMG id="bg"  SRC="/video_feed" width="320" height="240" >
+                </div>
+                 <div class="btn-group btn-group-md inButtons">
                 <button type="button" class="btn btn-success" id="btn-cloud" data-toggle="buttons-checkbox" title="While its marked, all your videos and photos will save at your cloud service"> <span class="glyphicon glyphicon-cloud"/></button>
-
-                    <button type="button" id="btn-toggle-video" class="btn btn-success" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
-
-
-                 <button type="button" id="btn-image" class="btn btn-success" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
-                  <button type="button" id="btn-sound" class="btn btn-success" title="Record yourself and play it at home" ><span class="glyphicon glyphicon-volume-up"/></button>
-                   <button type="button" id="btn-lg2" class="btn btn-success" title="Download a Photo" onclick="document.location.href='get_frame';"><span class="glyphicon glyphicon-download-alt"/></button>
-
+                <button type="button" id="btn-toggle-video" class="btn btn-success" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
+                <button type="button" id="btn-image" class="btn btn-success" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
+                 <button type="button" id="btn-sound" class="btn btn-success" title="Record yourself and play it at home" ><span class="glyphicon glyphicon-volume-up"/></button>
+                 <button type="button" id="btn-lg2" class="btn btn-success" title="Download a Photo" onclick="document.location.href='get_frame';"><span class="glyphicon glyphicon-download-alt"/></button>
               </div>
+                 <div class="btn-group btn-group-xs in-bottom-buttons ">
+                    <button type="button" id="btn-small" class="btn btn-primary">Small</button>
+                    <button type="button" id="btn-med" class="btn btn-primary">Medium</button>
+                     <button type="button" id="btn-lg" class="btn btn-primary">Large</button>
+              </div>
+
+                </div>
             </div>
 
         <div id="sectionB" class="tab-pane fade">
-            <h3>Online Security</h3>
+            <h3>Active Security</h3>
             <br>
 
             <div id="note" class="alert alert-info fade in center">
@@ -143,11 +162,11 @@ addToHomescreen();
             $('#note').alert('close');
             </script>
             <div class="alert alert-danger center">
-                <strong>Importent!</strong> The Online Security is alredy active
+                <strong>Importent!</strong> The Online Security is already active
             <br>
                 </div>
                  <form action="toggle_online" method="post">
-                     <button type="submit" class="btn btn-default" name = "submit" value = "off" >Stop Online Secure</button>
+                     <button type="submit" class="btn btn-primary" name = "submit" value = "off" >Stop Active Secure</button>
                  </form>
             {% else %}
                  <br>
@@ -157,10 +176,9 @@ addToHomescreen();
                       <div class="col-md-6">
                       <select name="method" class="form-control" id="detection">
                            <option value="face">Face Detection</option>
-                           <option value="move">Movement Detection</option>
+                           <option value="move">N/A Movement Detection</option>
                            <option value="ubody">Upper Body Detection</option>
                            <option value="fbody">Full Body Detection</option>
-                           <option value="custom">Custom Detection</option>
                        </select>
                        </div>
                 </div>
@@ -173,27 +191,27 @@ addToHomescreen();
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
-                              <label><input type="checkbox" value="sound" name="chk-sound"> Play alarm</label>
+                              <label><input type="checkbox" value="sound" name="chk-sound">Alarm</label>
                              </div>
                          </div>
                      </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
-                              <label><input type="checkbox" value="mail" name="chk-mail">Send e-mail notification</label>
+                              <label><input type="checkbox" value="mail" name="chk-mail">Email notification</label>
                              </div>
                          </div>
                      </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
-                              <label><input type="checkbox" value="notification" name="chk-not"> Send smartphone notification </label>
+                              <label><input type="checkbox" value="notification" name="chk-not"> Phone notification </label>
                              </div>
                          </div>
                      </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                           <button type="submit" class="btn btn-default">Submit</button>
+                           <button type="submit" class="btn btn-success">Submit</button>
                          </div>
                      </div>
                   </form>
@@ -210,7 +228,7 @@ addToHomescreen();
   <div class="col-md-offset-4 col-md-4">
     <div class="input-group">
       <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" onclick="window.open('{{dropbox}}','popUpWindow','height=400,width=600,left=10,top=10,,scrollbars=yes,menubar=no'); return false;"">Get Yor code</button>
+        <button class="btn btn-primary" type="button" onclick="window.open('{{dropbox}}','popUpWindow','height=400,width=600,left=10,top=10,,scrollbars=yes,menubar=no'); return false;"">Get Your code</button>
       </span>
       <input type="text" name="code" class="form-control" placeholder="Enter Your code Here...">
          <div class="input-group-btn">
