@@ -115,7 +115,7 @@ addToHomescreen();
     <ul class="nav nav-tabs" id="myTab">
         <li class="active "><a href="#sectionA">Stream <i class="glyphicon glyphicon-facetime-video"></i></a></li>
         <li><a href="#sectionB">Active <i class="glyphicon glyphicon-check"></i></a></li>
-        <li><a href="#settings">Cloud Settings <i class="glyphicon glyphicon-cog"></i></a></li>
+        <li><a href="#settings">Cloud <i class="glyphicon glyphicon-cog"></i></a></li>
     </ul>
 
     <div class="tab-content">
@@ -132,20 +132,23 @@ addToHomescreen();
             <div class="imagewrap">
             <div  id="stream" style="text-align: center;"><IMG id="bg"  SRC="/video_feed" width="320" height="240" >
                 </div>
-                 <div class="btn-group btn-group-md inButtons">
-                <button type="button" class="btn btn-success" id="btn-cloud" data-toggle="buttons-checkbox" title="While its marked, all your videos and photos will save at your cloud service"> <span class="glyphicon glyphicon-cloud"/></button>
-                <button type="button" id="btn-toggle-video" class="btn btn-success" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
-                <button type="button" id="btn-image" class="btn btn-success" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
-                 <button type="button" id="btn-sound" class="btn btn-success" title="Record yourself and play it at home" ><span class="glyphicon glyphicon-volume-up"/></button>
-                 <button type="button" id="btn-lg2" class="btn btn-success" title="Download a Photo" onclick="document.location.href='get_frame';"><span class="glyphicon glyphicon-download-alt"/></button>
+                 <div class="btn-group btn-group-md inButtons" id="navbar-upper">
+                <button type="button" class="btn btn-primary" id="btn-cloud" data-toggle="buttons-checkbox" title="While its marked, all your videos and photos will save at your cloud service"> <span class="glyphicon glyphicon-cloud"/></button>
+                <button type="button" id="btn-toggle-video" class="btn btn-primary" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
+                <button type="button" id="btn-image" class="btn btn-primary" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
+                 <button type="button" id="btn-sound" class="btn btn-primary" title="Record yourself and play it at home" ><span class="glyphicon glyphicon-volume-up"/></button>
+                 <button type="button" id="btn-lg2" class="btn btn-primary" title="Download a Photo" onclick="document.location.href='get_frame';"><span class="glyphicon glyphicon-download-alt"/></button>
               </div>
-                 <div class="btn-group btn-group-xs in-bottom-buttons ">
+                 <div class="btn-group btn-group-xs in-bottom-buttons" id="navbar-bottom">
                     <button type="button" id="btn-small" class="btn btn-primary">Small</button>
                     <button type="button" id="btn-med" class="btn btn-primary">Medium</button>
                      <button type="button" id="btn-lg" class="btn btn-primary">Large</button>
               </div>
 
                 </div>
+
+            <p></p>
+            <button type="button" id="toggle-bars" class="btn btn-success">Hide/Show Bars</button>
             </div>
 
         <div id="sectionB" class="tab-pane fade">

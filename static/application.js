@@ -9,6 +9,14 @@ $(document).ready(function(){
         $("#bg").width(320).height(240);
         $("#stream").toggle();
     });
+
+     $("#toggle-bars").click(function(e){
+        e.preventDefault();
+        $("#navbar-upper").toggle();
+          $("#navbar-bottom").toggle();
+
+    });
+
     $("#btn-med").click(function(e){
         e.preventDefault();
         $("#bg").width(640).height(480);
@@ -16,7 +24,7 @@ $(document).ready(function(){
     });
      $("#btn-lg").click(function(e){
         e.preventDefault();
-        $("#bg").width(1024).height(768);
+        $("#bg").width(800).height(600);
         $("#stream").toggle();
     });
     $("#btn-image").click(function(e){
@@ -26,7 +34,7 @@ $(document).ready(function(){
       $("#btn-toggle-video").click(function(e){
         e.preventDefault();
         var url;
-        if ($( "#btn-toggle-video" ).hasClass("btn-success")){
+        if ($( "#btn-toggle-video" ).hasClass("btn-primary")){
             if ($("#btn-cloud").hasClass("btn-info"))
                 url = '?options=record&cloud=true';
             else
