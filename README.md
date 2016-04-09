@@ -3,11 +3,11 @@
 Turn your simple web cam into a smart security home surveillance system.  <br>
 Watch your webcam anywhere, record a video or take a snapshot, from a secured (TLS/SSL & HTTP Basic Auth) web interface. <br>
 Apply a smart protection, which play alarm, send email and smarthphone notifications when a suspicious activity captured. 
-The smart protection can be active from anywhere, and based on face/full/upper body detection 
+The smart protection can be active from anywhere, and based on movement/face/full/upper body detection 
 
 #Features 
 * Watch your webcam stream from anywhere
-* Active protection with email and smartphone notifications based on face/full/upper body detection
+* Active protection with email and smartphone notifications based on movement/face/full/upper body detection
 * Recrod a video, or take a snapshot
 * Auto sync recorded video to your Dropbox account
 * TLS/SSL plus http basic authentication secured
@@ -24,10 +24,10 @@ Watch simply on the go: <br><br>
 Or from your browser: <br><br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshotDesktop.png?raw=true) <br>
 #Installations and Requirements
-<b> Windows installer is ready for testing! check in release tab </b><br>
-Tested on Windows 7&8, for linux need some code modification  <br>
+<b> Windows installer (RC1) is ready for testing! check in release tab </b><br>
+Tested on fedora and Windows (7 and 8)  <br>
 Download and install python 2.7.9 (32 bit only)
-You can use lower 2.7.x but without SSL/TLS support, not recommended!
+You can use lower 2.7.x  without SSL/TLS support, not recommended!
 
 For a quick installation you can use  [pip](https://pip.pypa.io/en/latest/installing.html) <br>
 Install  [Flask](http://flask.pocoo.org/docs/0.10/installation/#installation), there are some dependencies  <br>
