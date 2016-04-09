@@ -1,16 +1,13 @@
 import cv2
-import sys
-import os
 import mailer
 import logging
-from threading import Thread
 import time
-import config
 import datetime
 import pygame
 
 logging.basicConfig(filename='app.log',level=logging.DEBUG)
 pygame.mixer.init()
+
 
 class VideoCamera(object):
     binary = True
@@ -20,6 +17,7 @@ class VideoCamera(object):
         self.videoWriter = None
         self.online = False
         self.recording = False
+        self.first_captured = None
     
     def __del__(self):
         self.video.release()
@@ -27,42 +25,58 @@ class VideoCamera(object):
     def finished(self):
         self.video.release()
 
-
     def start(self,sens, method, mail, sound, notif):
         self.online = False
         logging.info('Active security started at ' + str(datetime.datetime.now()))
         iterator = 0
         count = 0
         before = False
+        first_captured = None
         while True:
             success, image = self.video.read()
             if not success:
                 continue
             iterator += 1
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            if first_captured is None:
+                first_captured = gray
             if method == 'face':
                 faceCascade = cv2.CascadeClassifier("haarcascade/faceDetect.xml")
             elif method == 'ubody':
                 faceCascade = cv2.CascadeClassifier("haarcascade/haarcascade_upperbody.xml")
             elif method == 'fbody':
                 faceCascade = cv2.CascadeClassifier("haarcascade/haarcascade_fullbody.xml")
-            faces = faceCascade.detectMultiScale(
-                gray,
-                scaleFactor=1.1,
-                minNeighbors=5,
-                flags=0)
-            if type(faces) is not tuple:
-                if before:
+            elif method == 'move':
+                if self.first_captured is None:
+                    self.first_captured = gray
+                frameDelta = cv2.absdiff(self.first_captured, gray)
+                thresh = cv2.threshold(frameDelta, 25, 255, cv2.THRESH_BINARY)[1]
+                thresh = cv2.dilate(thresh, None, iterations=2)
+                (cnts, _) = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                for c in cnts:
+                    if cv2.contourArea(c) < int(self.config.get('Video')['min_movement_object']):
+                        continue
                     count += 1
-                before = True
-            else:
-                before = False
-                count = 0
+                    break
+            if method == 'ubody' or method == 'fbody' or method == 'face':
+                faces = faceCascade.detectMultiScale(
+                    gray,
+                    scaleFactor=1.1,
+                    minNeighbors=5,
+                    flags=0)
+                if type(faces) is not tuple:
+                    if before:
+                        count += 1
+                    before = True
+                else:
+                    before = False
+                    count = 0
             if self.online:
                 logging.info('Active security Stopped by user at ' + str(datetime.datetime.now()))
+                self.first_captured = None
                 return
             if count == (6 - sens):
-                logging.info('Face Detected! at ' + str(datetime.datetime.now()))
+                logging.info('Figure Detected! at ' + str(datetime.datetime.now()))
                 img = self.get_frame(False)
                 if notif:
                     try:
@@ -71,22 +85,25 @@ class VideoCamera(object):
                     except:
                         logging.warn('Error sending notification  ' + str(datetime.datetime.now()))
                 if sound: 
-			pygame.mixer.music.load(self.config.get('Sound')['alarm'])
-			pygame.mixer.music.play()
-			while pygame.mixer.music.get_busy() == True:
-			    continue
+                    pygame.mixer.music.load(self.config.get('Sound')['alarm'])
+                    pygame.mixer.music.play()
+                    while pygame.mixer.music.get_busy() == True:
+                        continue
 
                 if mail:
                     try:
                         logging.info('Sending email ' + str(datetime.datetime.now()))
                         mailer.sendMessege(img, self.config)
+                        self.first_captured = None
                         return
                     except:
                         logging.info('Error Sending Mail ' + str(datetime.datetime.now()))
-                return  
-            if iterator==10:
-                iterator=0
-                count=0
+                self.first_captured = None
+                return
+            if iterator == 10:
+                iterator = 0
+                count = 0
+
     def record(self,upload, cloud):
         self.recording = True
         logging.info('Video recording started at ' + str(datetime.datetime.now()))
@@ -109,12 +126,11 @@ class VideoCamera(object):
             data = f.read()
             cloud.upload_file(data, '/video' + timestr + ".avi")
 
-
     def playAudio(self):
-	pygame.mixer.music.load("audio.wav")
-	pygame.mixer.music.play()
-	while pygame.mixer.music.get_busy() == True:
-		continue
+        pygame.mixer.music.load("audio.wav")
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy() == True:
+            continue
 
     def endVideo(self):
         self.recording = False

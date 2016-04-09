@@ -7,7 +7,9 @@ $(document).ready(function(){
     $("#btn-small").click(function(e){
         e.preventDefault();
         $("#bg").width(320).height(240);
-        $("#stream").toggle();
+        $("#imagewrap").hide(100);
+        $("#imagewrap").show(100);
+
     });
 
      $("#toggle-bars").click(function(e){
@@ -17,15 +19,29 @@ $(document).ready(function(){
 
     });
 
+     $("#btn-full-sc").click(function(e){
+        e.preventDefault();
+        $( '#' ).toggleClass("overlay")
+    });
+
+    $('.test-popup-link').magnificPopup({
+        type:'image',
+         verticalFit: true,
+         midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+    });
+
+
     $("#btn-med").click(function(e){
         e.preventDefault();
         $("#bg").width(640).height(480);
-        $("#stream").toggle();
+        $("#imagewrap").hide();
+        $("#imagewrap").show();
     });
      $("#btn-lg").click(function(e){
         e.preventDefault();
         $("#bg").width(800).height(600);
-        $("#stream").toggle();
+        $("#imagewrap").hide();
+        $("#imagewrap").show();
     });
     $("#btn-image").click(function(e){
         e.preventDefault();
@@ -42,19 +58,15 @@ $(document).ready(function(){
         }
         if ($( "#btn-toggle-video" ).hasClass("btn-danger"))
             url = "stopV";
-        $.ajax({url: window.location.href +url, success: function(result){
+        $.ajax({url: window.location.href +url,
+         beforeSend: function() {
+            $("#bg").attr("src","static/spinner.gif");
+            },
+        success: function(result){
             $( "#btn-toggle-video" ).toggleClass("btn-danger")
             $("#stream").html(result);
          }});
-         /*
-        if ($( "#btn-toggle-video" ).hasClass("btn-success")){
-            if ($("#btn-cloud").hasClass("btn-info"))
-                document.location.href='?options=record&cloud=true'
-            else
-                document.location.href='?options=record';
-            }
-        else
-            document.location.href='stopV'; */
+
       });
       $("#btn-cloud").click(function(e){
         e.preventDefault();

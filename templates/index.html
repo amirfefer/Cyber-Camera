@@ -4,10 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=400, initial-scale=1">
 <title>Cyber Camera</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- Magnific Popup core CSS file -->
+<link rel="stylesheet" href="static/magnific-popup.css">
+
+<!-- Magnific Popup core JS file -->
+<script src="static/jquery.magnific-popup.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='RecordRTC.js') }}"></script>
  <script type="text/javascript" src="{{ url_for('static', filename='application.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='addtohomescreen.css') }}">
@@ -58,6 +63,14 @@ addToHomescreen();
     .hidden {
     visibility: hidden;
     }
+    .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    z-index:1000;
+}}
 </style>
 </head>
 <body>
@@ -129,10 +142,11 @@ addToHomescreen();
                 </div>
                 <br>
             <br/>
+
             <div class="imagewrap">
-            <div  id="stream" style="text-align: center;"><IMG id="bg"  SRC="/video_feed" width="320" height="240" >
+            <div  id="stream"> <a href="/video_feed" class="test-popup-link"><IMG id="bg"  SRC="/video_feed" width="320" height="240" ></a>
                 </div>
-                 <div class="btn-group btn-group-md inButtons" id="navbar-upper">
+                 <div class="btn-group-vertical btn-group-md inButtons" id="navbar-upper">
                 <button type="button" class="btn btn-primary" id="btn-cloud" data-toggle="buttons-checkbox" title="While its marked, all your videos and photos will save at your cloud service"> <span class="glyphicon glyphicon-cloud"/></button>
                 <button type="button" id="btn-toggle-video" class="btn btn-primary" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
                 <button type="button" id="btn-image" class="btn btn-primary" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
@@ -178,8 +192,8 @@ addToHomescreen();
                       <label for="detection" class="control-label col-md-2">Detection Method:</label>
                       <div class="col-md-6">
                       <select name="method" class="form-control" id="detection">
+                           <option value="move">Movement Detection</option>
                            <option value="face">Face Detection</option>
-                           <option value="move">N/A Movement Detection</option>
                            <option value="ubody">Upper Body Detection</option>
                            <option value="fbody">Full Body Detection</option>
                        </select>
