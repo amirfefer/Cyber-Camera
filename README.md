@@ -18,8 +18,8 @@ The smart protection can be active from anywhere, and based on movement/face/ful
 
 Watch simply on the go: <br><br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/stream.png) 
-![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/cloud.png)
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/online.png)
+![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/cloud.png)
 
 Or from your browser: <br><br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshotDesktop.png?raw=true) <br>
