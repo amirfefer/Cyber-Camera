@@ -1,9 +1,9 @@
 #Cyber-Camera
 <i>by Amir Fefer </i><br> <br>
-Turn your simple web cam into a smart security home surveillance system.  <br>
-Watch your webcam anywhere, record a video or take a snapshot, from a secured (TLS/SSL & HTTP Basic Auth) web interface. <br>
-Apply a smart protection, which play alarm, send email and smarthphone notifications when a suspicious activity captured. 
-The smart protection can be active from anywhere, and based on movement/face/full/upper body detection 
+An open source for home surveillance: <br>
+Cyber-Cam turns any webcam into a smart security home surveillance system. <br>
+Allow you to watch and record video streaming anywhere from a secured (TLS/SSL & HTTP Basic Auth) web interface. <br>
+Cyber Cam includes smart protection, which plays alarm, sends email and smartphone notifications when a suspicious ,<br> activity captured. Based on real time movement, face, full/upper-body detection. <br>
 
 #Features 
 * Watch your webcam stream from anywhere
