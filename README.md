@@ -12,7 +12,8 @@ Cyber Cam includes smart protection, which plays alarm, sends email and smartpho
 * Auto sync recorded video to your Dropbox account
 * TLS/SSL plus http basic authentication secured
 * Responsive Web UI 
-* Audio Stream - record yourself.
+* One direction audio stream - stream your voice from anywhere 
+* Auto start/stop server by hosts discovery
 
 #Screenshots
 
@@ -23,6 +24,15 @@ Watch simply on the go: <br><br>
 
 Or from your browser: <br><br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshotDesktop.png?raw=true) <br>
+
+#Auto start/off server by hosts discovery
+Now you can forget about start or stop the sever manually! <br>
+The server will start  automatically when all the hosts (which can be smartphones) does NOT reachable in the local network <br>
+Just make a `hosts.txt` file in the main dir, <br>
+Add  the wanted hosts IP separated by line (make sure each host has static ip in the local network) <br>
+Run the `network.py` script instead of `server.py`.
+
+
 #Installations and Requirements
 <b> Windows installer (RC1) is ready for testing! check in release tab </b><br>
 Tested on fedora and Windows (7 and 8)  <br>
