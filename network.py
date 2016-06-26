@@ -1,4 +1,3 @@
-__author__ = 'amirf_000'
 import sys
 import os
 import platform
