@@ -13,7 +13,7 @@ Cyber Cam includes smart protection, which plays alarm, sends email and smartpho
 * TLS/SSL plus http basic authentication secured
 * Responsive Web UI 
 * One direction audio stream - stream your voice from anywhere 
-* Auto start/stop server by hosts discovery
+* Auto server initialization by hosts discovery
 
 #Screenshots
 
@@ -25,11 +25,12 @@ Watch simply on the go: <br><br>
 Or from your browser: <br><br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshotDesktop.png?raw=true) <br>
 
-#Auto start/off server by hosts discovery
-Now you can forget about start or stop the sever manually! <br>
-The server will start  automatically when all the hosts (which can be smartphones) does NOT reachable in the local network <br>
-Just make a `hosts.txt` file in the main dir, <br>
-Add  the wanted hosts IP separated by line (make sure each host has static ip in the local network) <br>
+#Server initialization by hosts discovery
+You can forget to start or stop the sever manually <br>
+The server will start  automatically when all the hosts (e.g your smartphone) do NOT reachable in the local network <br>
+plus get server's current IP address via email <br>
+Just make a `hosts.txt` file in the main `cyber-camera` dir, <br>
+Add  the wanted hosts IP separated by line (make sure each host has a static ip in the local network) <br>
 Run the `network.py` script instead of `server.py`.
 
 
