@@ -29,17 +29,16 @@ class VideoCamera(object):
         self.online = False
         logging.info('Active security started at ' + str(datetime.datetime.now()))
         iterator = 0
-        count = 0
-        before = False
-        first_captured = None
+        repeated = 0
+        sequence_capture = False
+        self.first_captured = None
         while True:
             success, image = self.video.read()
             if not success:
                 continue
             iterator += 1
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-            if first_captured is None:
-                first_captured = gray
+
             if method == 'face':
                 faceCascade = cv2.CascadeClassifier("haarcascade/faceDetect.xml")
             elif method == 'ubody':
@@ -50,34 +49,37 @@ class VideoCamera(object):
                 if self.first_captured is None:
                     self.first_captured = gray
                 frameDelta = cv2.absdiff(self.first_captured, gray)
+                self.first_captured = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
                 thresh = cv2.threshold(frameDelta, 25, 255, cv2.THRESH_BINARY)[1]
                 thresh = cv2.dilate(thresh, None, iterations=2)
                 (cnts, _) = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
                 for c in cnts:
                     if cv2.contourArea(c) < int(self.config.get('Video')['min_movement_object']):
                         continue
-                    count += 1
+                    repeated += 1
                     break
             if method == 'ubody' or method == 'fbody' or method == 'face':
+                #TODO export arguments to config file
                 faces = faceCascade.detectMultiScale(
                     gray,
                     scaleFactor=1.1,
                     minNeighbors=5,
                     flags=0)
                 if type(faces) is not tuple:
-                    if before:
-                        count += 1
-                    before = True
+                    if sequence_capture:
+                        repeated += 1
+                    sequence_capture = True
                 else:
-                    before = False
-                    count = 0
+                    sequence_capture = False
+                    repeated = 0
             if self.online:
                 logging.info('Active security Stopped by user at ' + str(datetime.datetime.now()))
                 self.first_captured = None
                 return
-            if count == (6 - sens):
-                logging.info('Figure Detected! at ' + str(datetime.datetime.now()))
-                img = self.get_frame(False)
+            if repeated == (6 - sens):
+                logging.info('Figure has been Detected at ' + str(datetime.datetime.now()))
+                ret, jpeg = cv2.imencode('.jpg', image)
+                img = jpeg.tostring()
                 if notif:
                     try:
                         logging.info('Sending notification  ' + str(datetime.datetime.now()))
@@ -94,15 +96,13 @@ class VideoCamera(object):
                     try:
                         logging.info('Sending email ' + str(datetime.datetime.now()))
                         mailer.sendMessege(img, self.config)
-                        self.first_captured = None
-                        return
                     except:
                         logging.info('Error Sending Mail ' + str(datetime.datetime.now()))
                 self.first_captured = None
                 return
             if iterator == 10:
                 iterator = 0
-                count = 0
+                repeated = 0
 
     def record(self,upload, cloud):
         self.recording = True

@@ -43,3 +43,21 @@ def sendMessege(img_data, conf):
         server = smtplib.SMTP_SSL(conf.get('Mailer')['smtp'], int(conf.get('Mailer')['port']))
         server.login(_user, _pwd)
         server.sendmail(FROM, TO, msg.as_string())
+
+def send_email_address(data, conf):
+        _user = conf.get('Mailer')['username']
+        _pwd = conf.get('Mailer')['password']
+
+        msg = MIMEMultipart()
+        msg['Subject'] = 'IP address for cyber camera'
+        msg['From'] = conf.get('Mailer')['username']
+        toList = conf.get('Mailer')['to'].split(",")
+        msg['To'] = toList[0]
+        FROM = conf.get('Mailer')['username']
+        TO = toList
+
+        text = MIMEText("Your IP address has been changed to: " + data)
+        msg.attach(text)
+        server = smtplib.SMTP_SSL(conf.get('Mailer')['smtp'], int(conf.get('Mailer')['port']))
+        server.login(_user, _pwd)
+        server.sendmail(FROM, TO, msg.as_string())
