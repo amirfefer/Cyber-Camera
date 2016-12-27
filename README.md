@@ -21,19 +21,18 @@ Cyber Cam includes smart protection, which plays alarm, sends email and smartpho
 Watch simply on the go: <br><br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/stream.png) 
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/online.png)
-![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/cloud.png)
 
 Or from your browser: <br><br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshotDesktop.png?raw=true) <br>
 
 #Server initialization by hosts discovery
-You can forget to start or stop the sever manually <br>
+It's time to forget from starting/stopping the sever manually <br>
 The server will start  automatically when all the hosts (e.g your smartphone) do NOT reachable in the local network <br>
 plus get server's current IP address via email <br>
-Just make a `hosts.txt` file in the main `cyber-camera` dir, <br>
-Add  the wanted hosts IP separated by line (make sure each host has a static ip in the local network) <br>
-Run the `network.py` script instead of `server.py`.
-
+Just make a `hosts.txt` file in the main `cyber-camera` directory, <br>
+Add  the wanted hosts IP separated by line (make sure each host has a static ip on the local network) <br>
+Run the `network.py` script instead of `server.py`.<br>
+When your public IP has been changed, an email will be sent with the new IP.
 
 #Installations and Requirements
 <b> Windows installer (RC1) is ready for testing! check in release tab </b><br>
