@@ -10,6 +10,7 @@ import hashlib
 import logging
 import datetime
 import ssl
+import cloud
 
 app = Flask(__name__)
 conf = config.Configuration()
@@ -19,8 +20,8 @@ app.secret_key = os.urandom(24)
 user = None
 online = None
 cmra = camera.VideoCamera(conf)
-import cloud
 drop = cloud.DropObj(conf)
+
 @auth.get_password
 def get_pw(username):
     global user
@@ -125,6 +126,6 @@ if __name__ == "__main__":
     if conf.boolean('Connection','https'):
         context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
         context.load_cert_chain(conf.get('Connection')['certificate'], conf.get('Connection')['key'])
-        app.run(threaded=True,host=conf.get('Connection')['ip'], port=int(conf.get('Connection')['port']) ,ssl_context=context)
+        app.run(threaded=True, host=conf.get('Connection')['ip'], port=int(conf.get('Connection')['port']) ,ssl_context=context)
     else:
         app.run(threaded=True,host=conf.get('Connection')['ip'], port=int(conf.get('Connection')['port']))

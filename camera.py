@@ -4,6 +4,7 @@ import logging
 import time
 import datetime
 import pygame
+import notifications
 
 logging.basicConfig(filename='app.log',level=logging.DEBUG)
 pygame.mixer.init()
@@ -18,12 +19,13 @@ class VideoCamera(object):
         self.online = False
         self.recording = False
         self.first_captured = None
-    
+        self.notification = notifications.Notification(config)
     def __del__(self):
         self.video.release()
         
     def finished(self):
         self.video.release()
+        self.notification.release()
 
     def start(self,sens, method, mail, sound, notif):
         self.online = False
@@ -84,6 +86,7 @@ class VideoCamera(object):
                     try:
                         logging.info('Sending notification  ' + str(datetime.datetime.now()))
                         mailer.send_notification(self.config)
+                        self.notification.send_notification()
                     except:
                         logging.warn('Error sending notification  ' + str(datetime.datetime.now()))
                 if sound: 
@@ -135,7 +138,7 @@ class VideoCamera(object):
     def endVideo(self):
         self.recording = False
 
-    def get_frame(self,faced,saved=False, video=False, videoStop = False):
+    def get_frame(self, faced,saved =False, video=False, videoStop=False):
         while True:
             success, image = self.video.read()
             if not success:
@@ -143,7 +146,7 @@ class VideoCamera(object):
             else:
                 break
         if video:
-            cv2.circle(image,(20,20), 15, (0,0,255), -1)
+            cv2.circle(image,(100, 20), 15, (0, 0, 255), -1)
         if faced:
             faceCascade = cv2.CascadeClassifier("haarcascade/faceDetect.xml")
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

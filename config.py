@@ -1,7 +1,6 @@
 __author__ = 'amir'
 import ConfigParser
 import hashlib
-from Crypto.Cipher import AES
 class Configuration(object):
     def __init__(self):
         self.config = ConfigParser.ConfigParser()
