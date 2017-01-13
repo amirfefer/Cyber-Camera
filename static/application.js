@@ -13,10 +13,12 @@ $(document).ready(function(){
     });
 
      $("#toggle-bars").click(function(e){
-        e.preventDefault();
-        $("#navbar-upper").toggle();
-          $("#navbar-bottom").toggle();
-
+        $("#btn-cloud").toggle("slow");
+        $('#btn-toggle-video').toggle("slow");
+        $('#btn-image').toggle("slow");
+        $('#btn-sound').toggle("slow");
+        $("#btn-lg2").toggle("slow");
+        $("#navbar-bottom").toggle("slow");
     });
 
      $("#btn-full-sc").click(function(e){
