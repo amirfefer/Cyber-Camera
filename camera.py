@@ -85,8 +85,10 @@ class VideoCamera(object):
                 if notif:
                     try:
                         logging.info('Sending notification  ' + str(datetime.datetime.now()))
-                        mailer.send_notification(self.config)
-                        self.notification.send_notification()
+                        if 'bxc' in self.config.get("Notifications"):
+                            mailer.send_notification(self.config)
+                        if 'pushover' in self.config.get("Notifications"):
+                            self.notification.send_notification()
                     except:
                         logging.warn('Error sending notification  ' + str(datetime.datetime.now()))
                 if sound: 
