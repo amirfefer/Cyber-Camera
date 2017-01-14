@@ -35,6 +35,14 @@ addToHomescreen();
         color: white;
         }
 
+        .btn-primary {
+            background: #ffdb4d;
+            color: #ffffff;
+            }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+            background: #ffe680;
+        }
+
         h3 {
         color: white;
         font-family: "Impact", Charcoal, sans-serif;
@@ -171,7 +179,7 @@ addToHomescreen();
                 <div  id="stream"> <a href="/video_feed" class="test-popup-link"><IMG id="bg"  SRC="/video_feed" width="320" height="240" ></a>
                 </div>
                 <div class="btn-group-vertical btn-group-md inButtons" id="navbar-upper">
-                    <button type="button" id="toggle-bars" class="btn btn-success" title="Show / Hide menu bar" ><span class="glyphicon glyphicon-menu-hamburger"/></button>
+                    <button type="button" id="toggle-bars" class="btn btn-primary" title="Show / Hide menu bar" ><span class="glyphicon glyphicon-menu-hamburger"/></button>
                     <button type="button" class="btn btn-warning" id="btn-cloud" data-toggle="buttons-checkbox" title="While its marked, all your videos and photos will save at your cloud service"> <span class="glyphicon glyphicon-cloud"/></button>
                     <button type="button" id="btn-toggle-video" class="btn btn-warning" title="Record"> <span class="glyphicon glyphicon-film"/> </button>
                     <button type="button" id="btn-image" class="btn btn-warning" title="Capture a Photo" onclick="document.location.href='get_frame?options=save';"><span class="glyphicon glyphicon-camera"/></button>
@@ -203,7 +211,7 @@ addToHomescreen();
                 <br>
             </div>
             <form action="toggle_online" method="post">
-                <button type="submit" class="btn btn-primary" name = "submit" value = "off" >Stop Active Secure</button>
+                <button type="submit" class="btn btn-warning" name = "submit" value = "off" >Stop Active Secure</button>
             </form>
             {% else %}
             <br>
