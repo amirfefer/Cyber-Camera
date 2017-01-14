@@ -44,11 +44,13 @@ to `opencv_ffmpeg` + `[opencv version e.g 2413]` <br>
 It's importent to fill out the conf file, pay attention to comments.
 For TLS/SSL support, make server's certificate and a key (optional) <br>
 The user's password must be in sha224, you can use a generator like [this](http://www.miniwebtool.com/sha224-hash-generator/) <br>
-To run the server under windows, run cmd and type `python server.py` <br>
+
 
 ##Configurations
 See [Here](https://github.com/amirfefer/Cyber-Camera/wiki/How-to-configure%3F) <br> 
-Congratulation! your webcam transformed into a smart security cam. <br>
+##How to Run it?
+For excuting the server under windows or linux, open terminal and type `$python server.py`.
+Congratulation! your webcam has been transformed into a smart security camera.
 Don't forget to  port forward, plus you can use ddns service like [noip](http://www.noip.com/free) (only in non HTTPS) <br>
 
 #Server initialization by hosts discovery
