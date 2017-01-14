@@ -5,7 +5,7 @@ Cyber-Cam turns any webcam into a smart security home surveillance system. <br>
 Allow you to watch and record video streaming anywhere from a secured (TLS/SSL & HTTP Basic Auth) web interface. <br>
 Cyber Cam includes smart protection, which plays alarm, sends email and smartphone notifications when a suspicious ,<br> activity captured. Based on real time movement, face, full/upper-body detection. <br>
 
-#Features 
+##Features 
 * Watch your webcam stream from anywhere
 * Active protection with email and smartphone notifications based on movement/face/full/upper body detection
 * Recrod a video, or take a snapshot
@@ -16,7 +16,7 @@ Cyber Cam includes smart protection, which plays alarm, sends email and smartpho
 * Auto server initialization by hosts discovery
 * Get an email when your public IP address has been changed
 
-#Screenshots
+##Screenshots
 
 Watch simply on the go: <br><br>
 ![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshot_phone1.png) 
@@ -24,7 +24,7 @@ Watch simply on the go: <br><br>
 
 Or from your browser<br><br>
 
-#Installations and Requirements
+##Installations and Requirements
 Tested on fedora 24 and Windows (7-10)  <br>
 Download and install python 2.7.9 (32 bit only)
 You can use lower 2.7.x  but without  SSL/TLS support.
@@ -46,14 +46,14 @@ For TLS/SSL support, make server's certificate and a key (optional) <br>
 The user's password must be in sha224, you can use a generator like [this](http://www.miniwebtool.com/sha224-hash-generator/) <br>
 
 
-##Configurations
+###Configurations
 See [Here](https://github.com/amirfefer/Cyber-Camera/wiki/How-to-configure%3F) <br> 
-##How to Run it?
+###How to Run it?
 For excuting the server under windows or linux, open terminal and type `$python server.py`.
 Congratulation! your webcam has been transformed into a smart security camera.
 Don't forget to  port forward, plus you can use ddns service like [noip](http://www.noip.com/free) (only in non HTTPS) <br>
 
-#Server initialization by hosts discovery
+##Server initialization by hosts discovery
 It's time to forget from starting/stopping the sever manually <br>
 The server will start  automatically when all the hosts (e.g your smartphone) do NOT reachable in the local network <br>
 plus get server's current IP address via email <br>
