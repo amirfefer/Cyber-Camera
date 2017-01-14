@@ -19,11 +19,10 @@ Cyber Cam includes smart protection, which plays alarm, sends email and smartpho
 #Screenshots
 
 Watch simply on the go: <br><br>
-![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/stream.png) 
-![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/online.png)
+![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshot_phone1.png) 
+![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshot2.png)
 
-Or from your browser: <br><br>
-![Stream](https://github.com/amirfefer/Cyber-Camera/blob/master/static/screenshotDesktop.png?raw=true) <br>
+Or from your browser<br><br>
 
 #Server initialization by hosts discovery
 It's time to forget from starting/stopping the sever manually <br>
