@@ -131,8 +131,8 @@ class VideoCamera(object):
             data = f.read()
             cloud.upload_file(data, '/video' + timestr + ".avi")
 
-    def playAudio(self):
-        pygame.mixer.music.load("audio.wav")
+    def playAudio(self, time):
+        pygame.mixer.music.load("audio" + time + ".wav")
         pygame.mixer.music.play()
         while pygame.mixer.music.get_busy() == True:
             continue

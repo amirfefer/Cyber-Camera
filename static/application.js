@@ -52,27 +52,27 @@ $(document).ready(function(){
       $("#btn-toggle-video").click(function(e){
         e.preventDefault();
         var url;
-        if ($( "#btn-toggle-video" ).hasClass("btn-primary")){
+        if ($( "#btn-toggle-video" ).hasClass("btn-warning")){
             if ($("#btn-cloud").hasClass("btn-info"))
                 url = '?options=record&cloud=true';
             else
                 url = "?options=record";
         }
-        if ($( "#btn-toggle-video" ).hasClass("btn-danger"))
+        if ($( "#btn-toggle-video" ).hasClass("btn-primary"))
             url = "stopV";
         $.ajax({url: window.location.href +url,
          beforeSend: function() {
             $("#bg").attr("src","static/spinner.gif");
             },
         success: function(result){
-            $( "#btn-toggle-video" ).toggleClass("btn-danger")
+            $( "#btn-toggle-video" ).toggleClass("btn-warning btn-primary")
             $("#stream").html(result);
          }});
 
       });
       $("#btn-cloud").click(function(e){
         e.preventDefault();
-        $("#btn-cloud").toggleClass('btn-info');
+        $("#btn-cloud").toggleClass('btn-warning btn-info');
         $("#cloud-note").toggle("slow");
       });
       var recordRTC = null;
@@ -107,7 +107,7 @@ $(document).ready(function(){
                 recordRTC.startRecording();
                 }, onError);
         }
-       $("#btn-sound").toggleClass('btn-danger');
+       $("#btn-sound").toggleClass('btn-warning btn-primary');
         })
 });
 function onError() {
