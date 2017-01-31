@@ -67,8 +67,9 @@ def gen(camera, save=False, vstart=False):
 @auth.login_required
 def audio():
     file = request.files['edition[audio]']
-    file.save("audio.wav")
-    cmra.playAudio()
+    timestamp = str(time.time())
+    file.save("audio" + timestamp + ".wav")
+    cmra.playAudio(timestamp)
     return ('', 204)
 @app.route('/video_feed')
 @auth.login_required
