@@ -27,6 +27,9 @@ class Configuration(object):
     def boolean(self, section, attr):
         return self.config.getboolean(section, attr)
 
+    def is_exist(self, category, option):
+        return self.config.has_option(category, option)
+
     def encrypt(self, data):
         obj = AES.new(self.get('Encryption')['Key'], AES.MODE_CBC, self.get('Encryption')['iv'])
         return obj.encrypt(data)
