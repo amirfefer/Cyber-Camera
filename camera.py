@@ -19,7 +19,7 @@ class VideoCamera(object):
         self.online = False
         self.recording = False
         self.first_captured = None
-        self.notification = notifications.Notification(config)
+        self.notification = notifications.Notification(config) if config.is_exist('Notifications', 'pushover') else None
     def __del__(self):
         self.video.release()
         
@@ -87,7 +87,7 @@ class VideoCamera(object):
                         logging.info('Sending notification  ' + str(datetime.datetime.now()))
                         if 'bxc' in self.config.get("Notifications"):
                             mailer.send_notification(self.config)
-                        if 'pushover' in self.config.get("Notifications"):
+                        if self.notification.user:
                             self.notification.send_notification()
                     except:
                         logging.warn('Error sending notification  ' + str(datetime.datetime.now()))
