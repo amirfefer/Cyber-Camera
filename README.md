@@ -1,18 +1,18 @@
-# Cyber-Camera
-<i>by Amir Fefer </i><br> <br>
+# Cyber-Cam
+
 An open source for home surveillance: <br>
 Cyber-Cam turns any webcam into a smart security home surveillance system. <br>
 Allow you to watch and record video streaming anywhere from a secured (TLS/SSL & HTTP Basic Auth) web interface. <br>
-Cyber Cam includes smart protection, which plays alarm, sends email and smartphone notifications when a suspicious ,<br> activity captured. Based on real time movement, face, full/upper-body detection. <br>
+Cyber Cam includes smart protection, which plays alarm, sends email and smartphone notifications when a suspicious <br> activity captured. Based on real time movement, face, full/upper-body detection. <br>
 
 ## Features 
-* Watch your webcam stream from anywhere
-* Active protection with email and smartphone notifications based on movement/face/full/upper body detection
-* Recrod a video, or take a snapshot
-* Auto upload recorded videos to your Dropbox account
-* TLS/SSL plus http basic authentication for max security
+* Watch your webcam stream anywhere
+* Get email and smartphone notifications when a movement/face/full/upper body detected
+* Recrod a video or take a snapshot remotely
+* Automatic uploading recorded videos to your Dropbox account
+* TLS/SSL and http basic authentication for max security
 * Responsive Web UI 
-* One direction audio stream - stream your voice from anywhere 
+* One direction audio stream
 * Auto server initialization by hosts discovery
 * Get an email when your public IP address has been changed
 
@@ -49,9 +49,9 @@ The user's password must be in sha224, you can use a generator like [this](http:
 ### Configurations
 See [Here](https://github.com/amirfefer/Cyber-Camera/wiki/How-to-configure%3F) <br> 
 ### How to Run
-For excuting the server under windows or linux, open terminal and type `$python server.py`.
+After filling the `conf.ini` file, excute the server under windows or linux by open the terminal and type `$python server.py`.
 Congratulation! your webcam has been transformed into a smart security camera.
-Don't forget to  port forward, plus you can use ddns service like [noip](http://www.noip.com/free) (only in non HTTPS) <br>
+Don't forget to port forward for accessing it from outside, plus you can use ddns service like [noip](http://www.noip.com/free) (only in non HTTPS) <br>
 
 ## Server initialization by hosts discovery
 It's time to forget from starting/stopping the sever manually <br>
